@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SMS Generator</string>
+    <string name="instructions">With SMS Generator you can automatically generate a number of random SMS. This is useful for testing and development purposes.</string>
+    <string name="input_label">Number of messages to generate:</string>
+    <string name="default_value">50</string>
+    <string name="btn_text">Generate</string>
+    <string name="success_toast">Messages successfully generated</string>
+</resources>
