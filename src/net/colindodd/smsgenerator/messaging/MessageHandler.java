@@ -10,14 +10,23 @@ public class MessageHandler {
 	
 	public void generateRandomMessages(int numberToGenerate, ContentResolver contentResolver) {
 		for(int i = 0; i < numberToGenerate; i++) {
-			generateMessage(People.getRandomPerson(), Messages.getRandomMessage(), contentResolver);
+			generateInboxMessage(People.getRandomPerson(), Messages.getRandomMessage(), contentResolver);
+			generateOutboxMessage(People.getRandomPerson(), Messages.getRandomMessage(), contentResolver);
 		}
 	}
 	
-	private void generateMessage(String sender, String body, ContentResolver contentResolver) {
+	private void generateInboxMessage(String person, String message, ContentResolver contentResolver) {
+		generateMessage(person, message, contentResolver, Uri.parse("content://sms/inbox"));
+	}
+
+	private void generateOutboxMessage(String person, String message, ContentResolver contentResolver) {
+		generateMessage(person, message, contentResolver, Uri.parse("content://sms/sent"));
+	}
+
+	private void generateMessage(String sender, String body, ContentResolver contentResolver, Uri uri) {
 		ContentValues values = new ContentValues();
 	    values.put("address", sender);
 	    values.put("body", body);
-	    contentResolver.insert(Uri.parse("content://sms/inbox"), values);
+	    contentResolver.insert(uri, values);
 	}
 }
